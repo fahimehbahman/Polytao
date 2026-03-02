@@ -1,0 +1,29 @@
+# Heavy folders (CRITICAL)
+data/
+checkpoints/
+eval_student/
+outputs/
+
+# Large files
+*.csv
+*.parquet
+*.json
+*.pt
+*.ckpt
+*.bin
+
+# Python
+__pycache__/
+*.pyc
+
+# Notebooks
+notebooks/
+.ipynb_checkpoints/
+
+# IDE / OS
+.git
+.gitignore
+.vscode/
+.idea/
+.env
+.DS_Store

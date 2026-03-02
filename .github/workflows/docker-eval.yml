@@ -1,0 +1,35 @@
+name: Docker Evaluation Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - feature/polytao-fineTuned-lightening
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  docker-eval:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build CPU Docker image
+        run: |
+          docker build -f docker/Dockerfile.cpu -t polytao-iu-cpu .
+
+      - name: Run evaluation (smoke test)
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            polytao-iu-cpu \
+            python src/run_evaluation.py \
+              --model_path checkpoints/polytao_student_distilled/student_20/model \
+              --train_csv data/polymers_with_properties_normalized_train.csv \
+              --out_dir eval_student/ci_test

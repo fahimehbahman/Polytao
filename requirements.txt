@@ -1,0 +1,16 @@
+numpy<2
+torch>=2.2
+transformers>=4.52
+datasets
+rdkit-pypi
+pandas
+scikit-learn
+tqdm
+matplotlib
+seaborn
+pytorch-lightning
+jupyterlab
+ipykernel
+ipywidgets>=8.0
+
+
